@@ -71,6 +71,7 @@ const AddRentPage: React.FC = () => {
 
   const onSubmit = (data: RentFormData) => {
     addRentRecord(roomId, {
+      roomId: roomId, // Add the missing roomId property here
       date: new Date(data.date),
       amount: Number(data.amount),
       previousMeterReading: Number(data.previousMeterReading),
@@ -213,3 +214,11 @@ const AddRentPage: React.FC = () => {
 };
 
 export default AddRentPage;
+
+function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
